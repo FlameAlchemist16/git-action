@@ -1,0 +1,8 @@
+name: Issue Handler
+on: issues
+jobs:
+    promt:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Get issue info
+                run: echo "${{toJson(github)}}"
