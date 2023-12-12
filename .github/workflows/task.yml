@@ -1,0 +1,45 @@
+name:   Performing Learning tasks
+on:     workflow_dispatch
+jobs:
+    task1:
+        name:   Checkout new branch
+        runs-on:    ubuntu-latest
+        steps:
+            -   name:   Get Code and checkout new branch
+                uses:   actions/checkout@v3
+                with:
+                    ref:    test
+    task2:
+        name:   Creating a text file
+        runs-on:    ubuntu-latest
+        steps:
+            -   shell:  bash
+                run: |
+                    "GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production.
+
+                    GitHub Actions goes beyond just DevOps and lets you run workflows when other events happen in your repository. For example, you can run a workflow to automatically add the appropriate labels whenever someone creates a new issue in your repository.
+                    
+                    GitHub provides Linux, Windows, and macOS virtual machines to run your workflows, or you can host your own self-hosted runners in your own data center or cloud infrastructure." > Github_actions_overview.txt
+            -   name:   Uploading the Overview file
+                uses:   actions/upload-artifact@v3
+                with:
+                    name:   Overview_GithubActions
+                    path:   Github_actions_overview.txt
+    task3:
+        name:   Creating a variable
+        runs-on:    ubuntu-latest
+        env:
+            Greeting: Good Afternoon
+        outputs:
+            out1: ${{env.Greeting}}
+        steps:
+            -   name: Printing the variable
+                id: step1
+                run:    echo "The value of the variable Greeting is => $Greeting"
+    task4:
+        name:   Using previously created variable
+        needs:  task3
+        runs-on:    ubuntu-latest
+        steps:
+            -   name: Use variable from other job
+                run: echo "The variable used in task3 was = ${{needs.task3.outputs.out1}}"
