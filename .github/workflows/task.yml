@@ -7,8 +7,8 @@ jobs:
         steps:
             -   name:   Get Code and checkout new branch
                 uses:   actions/checkout@v3
-                with:
-                    ref:    test
+                # with:
+                #     ref:    test
             -   name: Download Dependency
                 run: npm ci
     task2:
@@ -17,7 +17,7 @@ jobs:
         steps:
             -   shell:  bash
                 run: |
-                    "GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline." > Github_actions_overview.txt
+                    echo -e "GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline.\n You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production." >> Github_actions_overview.txt
             -   name:   Uploading the Overview file
                 uses:   actions/upload-artifact@v3
                 with:
