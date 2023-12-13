@@ -26,6 +26,13 @@ jobs:
                 with:
                     name:   Overview_GithubActions
                     path:   Github_actions_overview.txt
+            -   name:	Downloading the Overview file
+                uses:	actions/download-artifact@v3
+                with:
+                    name:	Overview_GithubActions
+            -   name: Printing the text file
+                run:	|
+                    echo cat Github_actions_overview.txt
     task3:
         name:   Creating a variable
         runs-on:    ubuntu-latest
