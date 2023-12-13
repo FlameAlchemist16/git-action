@@ -5,16 +5,17 @@ jobs:
         name:   Checkout new branch
         runs-on:    ubuntu-latest
         steps:
-            -   name:   Get Code and checkout new branch
-                uses:   actions/checkout@v3
-            -   run:    git checkout -b test
-            -   name:   Download Dependency
-                run:    npm ci
+            -   name:   Get Code
+                uses:   actions/checkout@v4
+            -   name: Checking out new branch named test
+                run:    |
+                    git checkout -b test
     task2:
         name:   Creating a text file
         runs-on:    ubuntu-latest
         steps:
-            -   shell:  bash
+            -   name:	Create new text file
+                shell:  bash
                 run:    |
                     echo -e "GitHub Actions is a continuous integration and continuous delivery
                      (CI/CD) platform that allows you to automate your build, test, and deployment
