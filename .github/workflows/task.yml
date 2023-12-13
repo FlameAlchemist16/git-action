@@ -32,7 +32,7 @@ jobs:
                     name:	Overview_GithubActions
             -   name: Printing the text file
                 run:	|
-                    echo cat Github_actions_overview.txt
+                    cat Github_actions_overview.txt
     task3:
         name:   Creating a variable
         runs-on:    ubuntu-latest
